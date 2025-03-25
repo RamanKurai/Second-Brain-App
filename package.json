@@ -1,0 +1,22 @@
+{
+  "name": "second_brain_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/jsonwebtoken": "^9.0.9",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.0",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1"
+  }
+}

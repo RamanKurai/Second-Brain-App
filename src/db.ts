@@ -1,39 +1,32 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose  from "mongoose";
 import { Schema } from "mongoose";
-import { ObjectId } from "mongoose";
+import { model } from "mongoose";
 
-const userSchema = new mongoose.Schema ({  
+mongoose.connect("//Put Your Own String")
+
+const userSchema = new Schema ({  
     email : ({type : String ,  required : true ,unique : true}),
     password : ({type : String  , required : true})
 })
 
-const contentSchema = new mongoose.Schema ({
+const contentSchema = new Schema ({
     title : String,
     link : String,
-    tags : [{type : mongoose.Types.ObjectId , ref : 'Tag'}],
+    tags : [{type : mongoose.Types.ObjectId , ref : "tag"}],
     type : String,
-    userId : {type : mongoose.Types.ObjectId , ref : "User" , required : true}
+    userId : {type : mongoose.Types.ObjectId , ref : "users" , required : true}
 })
 
-const tagSchema = new mongoose.Schema ({
+const tagSchema = new Schema ({
     title : {type : String , required : true , unique : true}
 })
 
-const linkSchema = new mongoose.Schema ({
+const linkSchema = new Schema ({
   hash : {type : String  , required : true},
-  userId : {type : mongoose.Types.ObjectId , ref: "User"}
+  userId : {type : mongoose.Types.ObjectId , ref: "users"}
 })
-
-const userModel = mongoose.model("user" , userSchema)
-const contentModel = mongoose.model("content" , contentSchema)
-const tagModel = mongoose.model("tag" , tagSchema)
-const linkModel = mongoose.model("link" ,linkSchema)
-
-module.exports = {
- userModel : userModel,
- contentModel : contentModel,
- tagModel : tagModel,
- linkModel : linkModel
-}
-
+export const userModel =  model("users" , userSchema)
+export const contentModel = model("content" , contentSchema)
+export const tagModel =   model("tag" , tagSchema)
+export const linkModel =  model("link" ,linkSchema)
 

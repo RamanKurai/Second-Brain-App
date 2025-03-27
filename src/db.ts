@@ -1,32 +1,31 @@
-import mongoose  from "mongoose";
-import { Schema } from "mongoose";
-import { model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
+mongoose.connect("mongodb+srv://ramankurai27:Qnykw4n7N07iYMmi@cluster0.sh3z1.mongodb.net/Second-Brain-App")
+  .then(() => console.log("Connected to MongoDB"))
+  .catch(err => console.error("MongoDB Connection Error:", err));
 
-mongoose.connect("//Put Your Own String")
+const userSchema = new Schema({
+  username: { type: String, required: true, unique: true }, 
+  password: { type: String, required: true }
+});
 
-const userSchema = new Schema ({  
-    email : ({type : String ,  required : true ,unique : true}),
-    password : ({type : String  , required : true})
-})
+const contentSchema = new Schema({
+  title: { type: String, required: true }, 
+  link: { type: String, required: false },
+  tags: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tag" }], 
+  type: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true } 
+});
 
-const contentSchema = new Schema ({
-    title : String,
-    link : String,
-    tags : [{type : mongoose.Types.ObjectId , ref : "tag"}],
-    type : String,
-    userId : {type : mongoose.Types.ObjectId , ref : "users" , required : true}
-})
+const tagSchema = new Schema({
+  title: { type: String, required: true, unique: true }
+});
 
-const tagSchema = new Schema ({
-    title : {type : String , required : true , unique : true}
-})
+const linkSchema = new Schema({
+  hash: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true } // Consistent ref names
+});
 
-const linkSchema = new Schema ({
-  hash : {type : String  , required : true},
-  userId : {type : mongoose.Types.ObjectId , ref: "users"}
-})
-export const userModel =  model("users" , userSchema)
-export const contentModel = model("content" , contentSchema)
-export const tagModel =   model("tag" , tagSchema)
-export const linkModel =  model("link" ,linkSchema)
-
+export const UserModel = model("User", userSchema);
+export const ContentModel = model("Content", contentSchema);
+export const TagModel = model("Tag", tagSchema);
+export const LinkModel = model("Link", linkSchema);

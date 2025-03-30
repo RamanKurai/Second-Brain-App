@@ -47,7 +47,6 @@ brainRouter.post("/brain/share", userMiddleware, async (req: any, res: any) => {
 
 brainRouter.get(
   "/brain/:sharelink",
-  userMiddleware,
   async (req: any, res: any) => {
     const hash = req.params.sharelink;
     try {

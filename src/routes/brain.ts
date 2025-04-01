@@ -3,7 +3,6 @@ import express from "express";
 import { Router } from "express";
 import { ContentModel, LinkModel, UserModel } from "../db";
 import { random } from "../utils/utils";
-import { contentRouter } from "./content";
 
 const brainRouter = Router();
 brainRouter.use(express.json());

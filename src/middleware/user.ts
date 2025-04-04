@@ -6,6 +6,7 @@ import { NextFunction , Request , Response } from "express";
 const JWT_USER_SECRET = process.env.JWT_USER_SECRET || "defaultSecret"
 
 const userMiddleware  = (req : Request , res : Response , next : NextFunction) => {
+    try {
     const header = req.headers["authorization"];
     const decodedToken = jwt.verify(header as string , JWT_USER_SECRET)
     if (decodedToken) {
@@ -17,8 +18,10 @@ const userMiddleware  = (req : Request , res : Response , next : NextFunction) =
             message : "You are not logged In"
         })
     }
+    } catch (error) {
+        console.error("Error While passing Token" , error)
+    }
 }
-
 export {
     userMiddleware
 }

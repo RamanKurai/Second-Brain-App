@@ -73,7 +73,6 @@ userRouter.post("/signin",   async (req: any, res: any) => {
         const token = jwt.sign(
             { id: user._id.toString() },
             process.env.JWT_USER_SECRET || "defaultSecret", 
-            { expiresIn: "1h" }
         );
 
         res.json({

@@ -8,7 +8,7 @@ import cors from "cors"
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: "http://brainly-eight.vercel.app", // your frontend domain
+  origin: "https://brainly-eight.vercel.app", // your frontend domain
   credentials: true
 }));  
 app.use("/api/v1/", userRouter);

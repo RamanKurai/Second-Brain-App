@@ -13,7 +13,7 @@ const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
-    origin: "http://brainly-eight.vercel.app", // your frontend domain
+    origin: "https://brainly-eight.vercel.app", // your frontend domain
     credentials: true
 }));
 app.use("/api/v1/", user_1.userRouter);

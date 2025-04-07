@@ -54,7 +54,7 @@ brainRouter.get(
       });
 
       if (!link) {
-        res.status(411).json({
+        res.status(404).json({
           message: " Sorry Incorrect Input ",
         });
         return;
@@ -80,7 +80,7 @@ brainRouter.get(
         content: content,
       });
     } catch (error) {
-      res.status(500).json({
+      res.status(404).json({
         message: "No content user not found",
       });
     }

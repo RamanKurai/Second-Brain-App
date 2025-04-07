@@ -46,7 +46,7 @@ contentRouter.get("/content", userMiddleware, async (req, res) => {
 contentRouter.delete("/content", userMiddleware, async (req: any, res: any) => {
   try {
     const contentId = req.body.contentId;
-    await ContentModel.deleteMany({
+    await ContentModel.findOneAndDelete({
       contentId,
       //@ts-ignore
       userId: req.userId,
@@ -56,7 +56,7 @@ contentRouter.delete("/content", userMiddleware, async (req: any, res: any) => {
       message: "Deleted content",
     });
   } catch (error) {
-    res.json(500).json({
+    res.status(500).json({
       message: "Invalid credentials",
     });
   }

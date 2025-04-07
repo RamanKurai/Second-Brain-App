@@ -3,7 +3,6 @@ import  express  from "express";
 import { z } from "zod";
 import  bcrypt from "bcrypt"
 import { UserModel } from "../db";
-import { userMiddleware } from "../middleware/user";
 import jwt from "jsonwebtoken"
 
 const userRouter = Router();

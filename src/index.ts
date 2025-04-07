@@ -7,8 +7,10 @@ import { brainRouter } from "./routes/brain";
 import cors from "cors"
 const app = express();
 app.use(express.json());
-app.use(cors());
-  
+app.use(cors({
+  origin: "http://brainly-eight.vercel.app", // your frontend domain
+  credentials: true
+}));  
 app.use("/api/v1/", userRouter);
 app.use("/api/v1/", contentRouter);
 app.use("/api/v1", brainRouter);
